@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://toby1024.github.io/sitemap.xml 
