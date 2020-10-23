@@ -3,9 +3,9 @@
 # ----------------------- #
 
 url: http://toby1024.github.io
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: Jason's drunk words
+subtitle: Drunk more,talk more!
+author: jason3305@126.com
 simple_search: https://www.google.com/search
 description:
 
@@ -99,3 +99,5 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
+
+paginate_path: "blog/posts/:num"

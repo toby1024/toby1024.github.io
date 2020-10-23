@@ -1,0 +1,13 @@
+---
+layout: post
+title: "基于Octopress和github搭建自己的Blog"
+date: 2020-10-23 09:32:10 +0800
+comments: true
+categories: DrunkWords
+---
+
+## 基于源代码搭建
+[官方文档](http://octopress.org/docs/)
+Octopress是基于jekyll开发的，使用ruby，所以如果是windows的话，建议放弃折腾
+
+
