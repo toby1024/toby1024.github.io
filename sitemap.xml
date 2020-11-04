@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://toby1024.github.io/blog/2020/11/04/event-storming/</loc>
+<lastmod>2020-11-04T09:24:36+08:00</lastmod>
+</url>
+<url>
+<loc>http://toby1024.github.io/blog/2020/10/23/design-pattern-rules/</loc>
+<lastmod>2020-10-23T18:04:17+08:00</lastmod>
+</url>
+<url>
 <loc>http://toby1024.github.io/blog/2020/10/23/first/</loc>
 <lastmod>2020-10-23T09:32:10+08:00</lastmod>
 </url>
@@ -15,5 +23,11 @@
 </url>
 <url>
 <loc>http://toby1024.github.io/blog/categories/drunkwords/</loc>
+</url>
+<url>
+<loc>http://toby1024.github.io/blog/categories/she-ji-mo-shi/</loc>
+</url>
+<url>
+<loc>http://toby1024.github.io/blog/categories/ddd/</loc>
 </url>
 </urlset>

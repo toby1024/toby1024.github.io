@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Jason's drunk words]]></title>
-  <link href="http://toby1024.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Ddd | Jason's drunk words]]></title>
+  <link href="http://toby1024.github.io/blog/categories/ddd/atom.xml" rel="self"/>
   <link href="http://toby1024.github.io/"/>
   <updated>2020-11-04T12:07:46+08:00</updated>
   <id>http://toby1024.github.io/</id>
@@ -49,7 +49,7 @@
 <h3>核心概念</h3>
 
 <p>事件风暴将系统拆分为不同的元素，用不同颜色的便利贴表示。<br>
-<img src="http://toby1024.github.io/images/ddd/event2.jpg"><br></p>
+<img src="/images/ddd/event2.jpg"><br></p>
 
 <h3>统一语言</h3>
 
@@ -57,7 +57,7 @@
 
 <h3>事件风暴过程</h3>
 
-<p><img src="http://toby1024.github.io/images/ddd/event_flow.jpg"><br></p>
+<p><img src="/images/ddd/event_flow.jpg"><br></p>
 
 <h4>识别领域事件</h4>
 
@@ -70,7 +70,7 @@
 <h4>识别参与者</h4>
 
 <p>事件一共有四种参与者：
-<img src="http://toby1024.github.io/images/ddd/event.jpg"><br></p>
+<img src="/images/ddd/event.jpg"><br></p>
 
 <pre><code>- 角色：触发事件的人
 - 策略：触发事件的规则
@@ -92,64 +92,6 @@
 
 <p>限界上下文包含场景，角色，活动，知识和能力，不包含UI部分。<br>
 限界上下文可以由不连续的事件组成。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[设计模式-原则与思想]]></title>
-    <link href="http://toby1024.github.io/blog/2020/10/23/design-pattern-rules/"/>
-    <updated>2020-10-23T18:04:17+08:00</updated>
-    <id>http://toby1024.github.io/blog/2020/10/23/design-pattern-rules</id>
-    <content type="html"><![CDATA[<p><img src="http://toby1024.github.io/images/blogs/设计原则与思想.png"></p>
-
-<h2>单一职责原则  Single Responsibility Principle</h2>
-
-<h3>如何理解单一职责</h3>
-
-<blockquote><ul>
-<li>一个类（方法）只完成一件事</li>
-<li>不要设计大而全的类（接口）</li>
-<li>高内聚低耦合</li>
-</ul>
-</blockquote>
-
-<h3>如何判断是否职责单一</h3>
-
-<blockquote><ul>
-<li>类或方法无法准确命名</li>
-<li>依赖过多外部资源</li>
-<li>代码行数过多，类的属性或者函数过多</li>
-<li>类的方法都在集中操作某几个属性</li>
-</ul>
-</blockquote>
-
-<h3>拆分粒度是否越细越好？</h3>
-
-<blockquote><ul>
-<li>考虑功能的相关性，避免低耦合过度失去高内聚，提高维护成本</li>
-</ul>
-</blockquote>
-
-<h2>开闭原则  Open/Closed Principle</h2>
-
-<p>对扩展开放，对修改关闭</p>
-
-<blockquote><ul>
-<li></li>
-</ul>
-</blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[基于Octopress和github搭建自己的Blog]]></title>
-    <link href="http://toby1024.github.io/blog/2020/10/23/first/"/>
-    <updated>2020-10-23T09:32:10+08:00</updated>
-    <id>http://toby1024.github.io/blog/2020/10/23/first</id>
-    <content type="html"><![CDATA[<h2>基于源代码搭建</h2>
-
-<p><a href="http://octopress.org/docs/">官方文档</a>
-Octopress是基于jekyll开发的，使用ruby，所以如果是windows的话，建议放弃折腾</p>
 ]]></content>
   </entry>
   
