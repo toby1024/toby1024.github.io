@@ -9,7 +9,7 @@ description: 面向对象：设计原则与思想
 ---
 # 面向对象
 {% img /images/blogs/mianxiangduixiang.png %}
-
+<!--more-->
 ## 多用组合少用继承
 继承过多过深影响代码可读性，提高维护成本
 
