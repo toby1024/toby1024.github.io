@@ -110,6 +110,9 @@
 <p>索引用于快速炒炸具有特定列值的行，如果没有索引，mysql必须从第一行开始，扫描全表找到对应的行。表越大，花费越多。如果表中有相关的索引，mysql可以快速确定要在数据文件中查找的位置。大多数mysql索引（primary key，unique，index和fulltext）存储在B-trees。空间数据类型的索引使用R-trees；MEMORY表还支持hash indexes；InnoDB对fulltext使用倒排表。<br>
 MySQL使用索引进行以下操作：</p>
 
+<!--more-->
+
+
 <ul>
 <li>通过where条件快速查询。</li>
 <li>最优匹配。如果可以在多个索引之间进行选择，则MySQL通常会使用查找最小行数的索引。</li>

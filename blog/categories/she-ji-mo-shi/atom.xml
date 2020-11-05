@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 设计模式 | Jason's drunk words]]></title>
   <link href="http://toby1024.github.io/blog/categories/she-ji-mo-shi/atom.xml" rel="self"/>
   <link href="http://toby1024.github.io/"/>
-  <updated>2020-11-05T15:21:48+08:00</updated>
+  <updated>2020-11-05T15:24:49+08:00</updated>
   <id>http://toby1024.github.io/</id>
   <author>
     <name><![CDATA[jason3305@126.com]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<h1>面向对象</h1>
 
 <p><img src="/images/blogs/mianxiangduixiang.png"></p>
+
+<!--more-->
+
 
 <h2>多用组合少用继承</h2>
 
