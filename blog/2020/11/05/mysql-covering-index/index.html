@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>设计模式-面向对象编程 - Jason's drunk words</title>
+  <title>Mysql_covering_index - Jason's drunk words</title>
   <meta name="author" content="jason3305@126.com">
 
   
-  <meta name="description" content="面向对象：设计原则与思想">
-  <meta name="keywords" content="设计原则与思想 面向对象">
+  <meta name="description" content="mysql covering index">
+  <meta name="keywords" content="mysql index transaction covering index">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://toby1024.github.io/blog/2020/10/23/design-pattern-rules/">
+  <link rel="canonical" href="http://toby1024.github.io/blog/2020/11/05/mysql-covering-index/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Jason's drunk words" type="application/atom+xml">
@@ -89,7 +89,7 @@
   
   <header>
     
-      <h1 class="entry-title">设计模式-面向对象编程</h1>
+      <h1 class="entry-title">Mysql_covering_index</h1>
     
     
       <p class="meta">
@@ -98,63 +98,39 @@
 
 
 
-<time class='entry-date' datetime='2020-10-23T18:04:17+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2020</span></span> <span class='time'>6:04 pm</span></time>
+<time class='entry-date' datetime='2020-11-05T11:37:02+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2020</span></span> <span class='time'>11:37 am</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h1>面向对象</h1>
+<div class="entry-content"><h2>index</h2>
 
-<p><img src="/images/blogs/mianxiangduixiang.png"></p>
+<p>索引用于快速炒炸具有特定列值的行，如果没有索引，mysql必须从第一行开始，扫描全表找到对应的行。表越大，花费越多。如果表中有相关的索引，mysql可以快速确定要在数据文件中查找的位置。大多数mysql索引（primary key，unique，index和fulltext）存储在B-trees。空间数据类型的索引使用R-trees；MEMORY表还支持hash indexes；InnoDB对fulltext使用倒排表。<br>
+MySQL使用索引进行以下操作：</p>
 
-<h2>多用组合少用继承</h2>
+<ul>
+<li>通过where条件快速查询。</li>
+<li>最优匹配。如果可以在多个索引之间进行选择，则MySQL通常会使用查找最小行数的索引。</li>
+<li>如果表具有多列索引，那么优化器可以使用索引的任何最左前缀来查找行。举例来说，如果你有一个三列的索引 (col1, col2, col3)，你可以索引的搜索有(col1)， (col1, col2)以及(col1, col2, col3)。</li>
+<li>执行联接时从其他表中检索行。如果声明相同的类型和大小，MySQL可以更有效地在列上使用索引。在这种情况下， VARCHAR与 CHAR被认为是相同的，如果它们被声明为相同的大小。例如， VARCHAR(10)和 CHAR(10)是相同的大小，但是 VARCHAR(10)和 CHAR(15)不是。<br>
+  对于非二进制字符串列之间的比较，两个列应使用相同的字符集，不同的字符集将导致索引失效。例如，将utf8列与latin1列进行比较会排除使用索引。<br>
+  如果不能不通过转换直接比较值，则比较不同的列（例如，将字符串列与时间或数字列进行比较）可能会阻止使用索引。对于给定的值，如数值列的值为1，它可能比较等于在字符串列，例如任何数量的值 &lsquo;1'，&rsquo; 1'， &lsquo;00001'，或'01.e1'，导致索引失效。</li>
+<li>在索引列使用MIN()或 MAX()。mysql预处理器将进行优化，预处理器会检查您是否正在索引出现的所有关键部分上使用。在这种情况下，MySQL为每个表达式执行一次键查找，并将其替换为常量，所有表达式都用常量替换完成后，查询将立即返回。</li>
+<li>排序或分组查询（order by， group by）使用最左匹配索引（order by key1, key2）；如果倒序排序（order by key1, key2 desc）,将按相反顺序使用索引key。</li>
+<li>某些情况下，mysql会直接从索引中获取数据，而不用查询表；例如：只查询索引列数据。注意：当开启列长事务时，可能导致该优化失效，回表查询。</li>
+<li>当全表扫描快于走索引查询时，mysql也不会走索引。</li>
+</ul>
 
-<p>继承过多过深影响代码可读性，提高维护成本</p>
 
-<h1>设计原则与思想</h1>
+<h2>covering index</h2>
 
-<p><img src="/images/blogs/设计原则与思想.png"></p>
+<p>查询的所有列都包含在索引中时，mysql不会扫描表（即不会回表查询），这种情况mysql定义为covering index；InnoDb引擎下，开启事务时，将不会使用这种优化查询。</p>
 
-<h2>单一职责原则  Single Responsibility Principle</h2>
+<h2>参考资料</h2>
 
-<h3>如何理解单一职责</h3>
-
-<p>一个类（方法）只完成一件事<br>
-不要设计大而全的类（接口)<br>
-高内聚低耦合<br></p>
-
-<h3>如何判断是否职责单一</h3>
-
-<p>类或方法无法准确命名<br>
-依赖过多外部资源<br>
-代码行数过多，类的属性或者函数过多<br>
-类的方法都在集中操作某几个属性<br></p>
-
-<h3>拆分粒度是否越细越好？</h3>
-
-<p>考虑功能的相关性，避免低耦合过度失去高内聚，提高维护成本</p>
-
-<h2>开闭原则  Open/Closed Principle</h2>
-
-<p>对扩展开放，对修改关闭<br>
-合理设计，不要过度设计<br>
-职责单一，避免相互影响，保证稳定性<br></p>
-
-<h2>DRY</h2>
-
-<p>重复主要指：代码重复，语义重复，执行重复<br>
-代码重复指的是同样的代码出现在多个地方，这种情况可以通过抽取方法，工具类的方式解决<br>
-语义重复指的是相同的功能采用了不同的实现方法，出现在多个地方，这种情况可以通过抽取工具类的方法解决<br>
-执行重复指的业务上下文执行了同样的逻辑，一般是参数校验，格式化等，需要从业务角度梳理，去除不必要的重复执行<br>
-复用需要考虑扩展性，避免和业务耦合，保证代码的稳定性<br></p>
-
-<h1>规范与重构</h1>
-
-<p><img src="/images/blogs/规范与重构.png">
-重构是一个持续的过程，重构不光是代码级别的重构，也针对业务架构等<br>
-重构的前提是单元测试要覆盖到位</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/optimizing-innodb-transaction-management.html">8.5.2 Optimizing InnoDB Transaction Management</a></p>
 </div>
 
 
@@ -170,12 +146,12 @@
 
 
 
-<time class='entry-date' datetime='2020-10-23T18:04:17+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2020</span></span> <span class='time'>6:04 pm</span></time>
+<time class='entry-date' datetime='2020-11-05T11:37:02+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2020</span></span> <span class='time'>11:37 am</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/she-ji-mo-shi/'>设计模式</a>
+    <a class='category' href='/blog/categories/mysql/'>mysql</a>
   
 </span>
 
@@ -184,7 +160,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://toby1024.github.io/blog/2020/10/23/design-pattern-rules/" data-via="" data-counturl="http://toby1024.github.io/blog/2020/10/23/design-pattern-rules/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://toby1024.github.io/blog/2020/11/05/mysql-covering-index/" data-via="" data-counturl="http://toby1024.github.io/blog/2020/11/05/mysql-covering-index/" >Tweet</a>
   
   
   
@@ -193,10 +169,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2020/10/23/first/" title="Previous Post: 基于Octopress和github搭建自己的Blog">&laquo; 基于Octopress和github搭建自己的Blog</a>
+        <a class="basic-alignment left" href="/blog/2020/11/04/event-storming/" title="Previous Post: 领域驱动-事件风暴">&laquo; 领域驱动-事件风暴</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2020/11/04/event-storming/" title="Next Post: 领域驱动-事件风暴">领域驱动-事件风暴 &raquo;</a>
       
     </p>
   </footer>
