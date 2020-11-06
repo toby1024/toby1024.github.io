@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ddd | Jason's drunk words]]></title>
   <link href="http://toby1024.github.io/blog/categories/ddd/atom.xml" rel="self"/>
   <link href="http://toby1024.github.io/"/>
-  <updated>2020-11-05T17:27:06+08:00</updated>
+  <updated>2020-11-06T09:12:38+08:00</updated>
   <id>http://toby1024.github.io/</id>
   <author>
     <name><![CDATA[jason3305@126.com]]></name>
@@ -12,6 +12,68 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[领域驱动实践-从需求到代码]]></title>
+    <link href="http://toby1024.github.io/blog/2020/11/05/ling-yu-qu-dong-shi-jian-cong-xu-qiu-dao-dai-ma/"/>
+    <updated>2020-11-05T17:37:41+08:00</updated>
+    <id>http://toby1024.github.io/blog/2020/11/05/ling-yu-qu-dong-shi-jian-cong-xu-qiu-dao-dai-ma</id>
+    <content type="html"><![CDATA[<h2>业务需求</h2>
+
+<p>网约车出行项目mvp</p>
+
+<!--more-->
+
+
+<ul>
+<li>作为乘客我希望创建⼀个出⾏订单，以便于从A地前往B地</li>
+<li>作为司机我希望履⾏⼀个订单，以便于获取收⼊</li>
+<li>作为运营我希望能取消订单，以便于乘客联系不上司机时重新下单</li>
+</ul>
+
+
+<h2>传统mvc模式</h2>
+
+<p>传统mvc往往基于数据模型进行开发，通过需求分析，确定数据模型，然后在数据模型上做CRUD开发<br>
+<img src="/images/ddd/20201105175028.jpg"><br>
+server类中聚集类所有的业务代码<br>
+<img src="/images/ddd/20201105175158.jpg"><br>
+所有的操作都是在操作数据，当业务变得越来越复杂时，service中的代码越来越臃肿，然后根据业务进行模块拆分，但是由于业务纵横交错，后续修改业务代码时，可能会需要修改多个模块。</p>
+
+<h2>微服务开发</h2>
+
+<p>微服务的出现一部分原因就是希望将业务划分清楚，解决模块耦合的问题，借助领域驱动设计，我们可以通过一些方法论来进行业务建模和微服务划分。</p>
+
+<h3>统一语言</h3>
+
+<p>针对不同的角色，同一个事务可能有不同定义。<br></p>
+
+<ul>
+<li>对于乘客来说，出行订单应该是一个行程。乘客关心的是起点，终点，司机的实时位置，需要支出的费用。<br></li>
+<li>对于设计来说，出行订单是一笔生意。司机关心的是乘客的位置，目的地，该笔行程的收入、奖励。<br></li>
+<li>对于运营人员来说，出行订单是一个合约，合约的双方是乘客和司机，运营人员关注合约的履约情况，合约的抽成信息等。<br></li>
+</ul>
+
+
+<p>针对不同的参与角色，我们定义不同的模型概念。
+<img src="/images/ddd/20201106085636.jpg"><br>
+通过对业务进行限界上下文划分，很容易就可以进行代码的隔离，不同的上下文分开进行编码，上下文之间的业务调用通过api接口方式进行交互，这样后续的业务演进，系统部署升级以及扩容都相对独立。<br>
+但是一个userstor就划分一个微服务肯定是不现实的，我们需要根据业务的相关性来进行，从两个方向来进行组织限界上下文。<br></p>
+
+<h4>语义相关性</h4>
+
+<p>不同的用例存在语义相关性就可以考虑放在一个限界上线文内。例如创建行程，取消行程都跟行程有关，就适合放在一个限界上下文来处理。</p>
+
+<h4>功能相关性</h4>
+
+<p>有些用例虽然都是操作相同的对象，但是在功能上有相互的独立性，应该考虑分割成独立的上下文。例如支付行程，虽然也是在操作行程对象，但其实更侧重于支付动作，后续的业务扩展也多围绕在支付上，如增加支付渠道，增加租金统计等和行程关联不大。</p>
+
+<h3>DEMO</h3>
+
+<p>代码参考：<a href="https://github.com/toby1024/ddd-demo">ddd-demo</a>
+<img src="/images/ddd/20201106091014.jpg"><br></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[领域驱动-事件风暴]]></title>

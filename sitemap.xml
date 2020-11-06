@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://toby1024.github.io/blog/2020/11/05/ling-yu-qu-dong-shi-jian-cong-xu-qiu-dao-dai-ma/</loc>
+<lastmod>2020-11-05T17:37:41+08:00</lastmod>
+</url>
+<url>
 <loc>http://toby1024.github.io/blog/2020/11/05/mysql-covering-index/</loc>
 <lastmod>2020-11-05T11:37:02+08:00</lastmod>
 </url>
