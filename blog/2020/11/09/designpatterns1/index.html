@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Jason's drunk words</title>
+  <title>设计模式-行为篇 - Jason's drunk words</title>
   <meta name="author" content="jason3305@126.com">
 
   
-  <meta name="description" content="Blog Archive 2020 设计模式-行为篇
-Nov 09 2020 posted in designpatterns 领域驱动实践-从需求到代码
-Nov 05 2020 posted in ddd Mysql_covering_index
-Nov 05 2020 posted in &hellip;">
+  <meta name="description" content="设计模式-行为篇">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +19,7 @@ Nov 05 2020 posted in &hellip;">
   <meta name="google-site-verification" content="NOo_lIwWtddvY9TsNtnJsPzlDU-jiHA75QcW_mgH7dU" />
 
   
-  <link rel="canonical" href="http://toby1024.github.io/blog/archives/">
+  <link rel="canonical" href="http://toby1024.github.io/blog/2020/11/09/designpatterns1/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Jason's drunk words" type="application/atom+xml">
@@ -92,105 +89,118 @@ Nov 05 2020 posted in &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">设计模式-行为篇</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2020-11-09T11:04:08+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2020</span></span> <span class='time'>11:04 am</span></time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p><img src="/images/DesignPatterns/202011091107.png"></p>
 
-  
-  <h2>2020</h2>
-
-<article>
-  
-<h1><a href="/blog/2020/11/09/designpatterns1/">设计模式-行为篇</a></h1>
-<time datetime="2020-11-09T11:04:08+08:00" pubdate><span class='month'>Nov</span> <span class='day'>09</span> <span class='year'>2020</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/designpatterns/'>designpatterns</a></span>
-</footer>
+<!--more-->
 
 
-</article>
+<h2>状态模式</h2>
 
+<h3>有限状态机</h3>
 
+<p>1:状态转换较多，但每个状态的转换业务不复杂的，推荐使用查表法。 <br>
+通过二维数组等方式确定下一个转换的状态，并处理对应业务<br>
+2:状态转换业务较复杂的，推荐使用状态模式，使用单独的类来定义状态和状态业务<br>
+3:业务非常简单，状态也很少，直接使用if else就可以实现，不需要过度设计<br></p>
 
-<article>
-  
-<h1><a href="/blog/2020/11/05/ling-yu-qu-dong-shi-jian-cong-xu-qiu-dao-dai-ma/">领域驱动实践-从需求到代码</a></h1>
-<time datetime="2020-11-05T17:37:41+08:00" pubdate><span class='month'>Nov</span> <span class='day'>05</span> <span class='year'>2020</span></time>
+<h3>迭代器模式</h3>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ddd/'>ddd</a></span>
-</footer>
+<p>通过模拟游标的滑动来遍历集合中的数据<br>
+迭代器需要实现 hasNext，currentItem，next三个方法，用于滑动游标和判断是否迭代结束<br>
+遍历过程中不支持元素的添加和删除操作，因为会引起未决结果<br></p>
 
+<h2>访问者模式</h2>
 
-</article>
+<p>一个或多个操作应用到一组对象上，设计的意图是解耦操作和对象本身，保持类的职责单一、满足开闭原则已应对代码的复杂性。<br>
+推荐使用策略模式替代访问者模式。1:访问者模式使用重载实现，容易让访问者代码爆炸。2:不巧妙，不灵活，将一组操作封装在一起，增加功能时需要修改的代码太多。<br>
+支持Double Dispatch的语言不需要访问者模式，直接动态执行就可以了<br></p>
 
+<h2>备忘录模式</h2>
 
+<p>1:备份以便于恢复数据<br>
+2:不能破坏封装原则<br>
+3:低频率全量备份结合高频率增量备份（redis RDF和AOF）<br></p>
 
-<article>
-  
-<h1><a href="/blog/2020/11/05/mysql-covering-index/">Mysql_covering_index</a></h1>
-<time datetime="2020-11-05T11:37:02+08:00" pubdate><span class='month'>Nov</span> <span class='day'>05</span> <span class='year'>2020</span></time>
+<h2>命令模式</h2>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/mysql/'>mysql</a></span>
-</footer>
+<p>1:将行为封装成对象进行传递<br>
+2:和策略模式的区别在于，每个命令执行的是不同的业务；策略模式指同一个业务的不同实现。<br>
+例如：控制电灯的开，关属于命令；是交流电还是直流电给电灯供电属于策略。<br></p>
 
+<h2>解释器模式</h2>
 
-</article>
+<p>典型的场景是编译器的语法解释。<br>
+解释器是针对特定的语句进行解释，调用特定的业务代码进行执行的过程。<br></p>
 
+<h2>中介模式</h2>
 
-
-<article>
-  
-<h1><a href="/blog/2020/11/04/event-storming/">领域驱动-事件风暴</a></h1>
-<time datetime="2020-11-04T09:24:36+08:00" pubdate><span class='month'>Nov</span> <span class='day'>04</span> <span class='year'>2020</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ddd/'>ddd</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2020/10/23/design-pattern-rules/">设计模式-面向对象编程</a></h1>
-<time datetime="2020-10-23T18:04:17+08:00" pubdate><span class='month'>Oct</span> <span class='day'>23</span> <span class='year'>2020</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/designpatterns/'>designpatterns</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2020/10/23/first/">基于Octopress和github搭建自己的Blog</a></h1>
-<time datetime="2020-10-23T09:32:10+08:00" pubdate><span class='month'>Oct</span> <span class='day'>23</span> <span class='year'>2020</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/drunkwords/'>drunkwords</a></span>
-</footer>
-
-
-</article>
-
+<p>1:接口对象之间的交互关系，将多对多关系通过中介类转换为一对多。<br>
+2:中介模式和观察者模式的区别在于，观察者关系是单向固定的，中介则可以是双向的。<br>
+3:中介模式接收消息后进行业务编排调度。<br>
+4:副作用：可能会产生一个大而全的上帝类，包含类所有的业务代码。（是否可以用命令模式进行拆分？）<br></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">jason3305@126.com</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2020-11-09T11:04:08+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2020</span></span> <span class='time'>11:04 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/designpatterns/'>designpatterns</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://toby1024.github.io/blog/2020/11/09/designpatterns1/" data-via="" data-counturl="http://toby1024.github.io/blog/2020/11/09/designpatterns1/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2020/11/05/ling-yu-qu-dong-shi-jian-cong-xu-qiu-dao-dai-ma/" title="Previous Post: 领域驱动实践-从需求到代码">&laquo; 领域驱动实践-从需求到代码</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

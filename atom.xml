@@ -4,7 +4,7 @@
   <title><![CDATA[Jason's drunk words]]></title>
   <link href="http://toby1024.github.io/atom.xml" rel="self"/>
   <link href="http://toby1024.github.io/"/>
-  <updated>2020-11-09T09:05:40+08:00</updated>
+  <updated>2020-11-09T11:14:01+08:00</updated>
   <id>http://toby1024.github.io/</id>
   <author>
     <name><![CDATA[jason3305@126.com]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[设计模式-行为篇]]></title>
+    <link href="http://toby1024.github.io/blog/2020/11/09/designpatterns1/"/>
+    <updated>2020-11-09T11:04:08+08:00</updated>
+    <id>http://toby1024.github.io/blog/2020/11/09/designpatterns1</id>
+    <content type="html"><![CDATA[<p><img src="http://toby1024.github.io/images/DesignPatterns/202011091107.png"></p>
+
+<!--more-->
+
+
+<h2>状态模式</h2>
+
+<h3>有限状态机</h3>
+
+<p>1:状态转换较多，但每个状态的转换业务不复杂的，推荐使用查表法。 <br>
+通过二维数组等方式确定下一个转换的状态，并处理对应业务<br>
+2:状态转换业务较复杂的，推荐使用状态模式，使用单独的类来定义状态和状态业务<br>
+3:业务非常简单，状态也很少，直接使用if else就可以实现，不需要过度设计<br></p>
+
+<h3>迭代器模式</h3>
+
+<p>通过模拟游标的滑动来遍历集合中的数据<br>
+迭代器需要实现 hasNext，currentItem，next三个方法，用于滑动游标和判断是否迭代结束<br>
+遍历过程中不支持元素的添加和删除操作，因为会引起未决结果<br></p>
+
+<h2>访问者模式</h2>
+
+<p>一个或多个操作应用到一组对象上，设计的意图是解耦操作和对象本身，保持类的职责单一、满足开闭原则已应对代码的复杂性。<br>
+推荐使用策略模式替代访问者模式。1:访问者模式使用重载实现，容易让访问者代码爆炸。2:不巧妙，不灵活，将一组操作封装在一起，增加功能时需要修改的代码太多。<br>
+支持Double Dispatch的语言不需要访问者模式，直接动态执行就可以了<br></p>
+
+<h2>备忘录模式</h2>
+
+<p>1:备份以便于恢复数据<br>
+2:不能破坏封装原则<br>
+3:低频率全量备份结合高频率增量备份（redis RDF和AOF）<br></p>
+
+<h2>命令模式</h2>
+
+<p>1:将行为封装成对象进行传递<br>
+2:和策略模式的区别在于，每个命令执行的是不同的业务；策略模式指同一个业务的不同实现。<br>
+例如：控制电灯的开，关属于命令；是交流电还是直流电给电灯供电属于策略。<br></p>
+
+<h2>解释器模式</h2>
+
+<p>典型的场景是编译器的语法解释。<br>
+解释器是针对特定的语句进行解释，调用特定的业务代码进行执行的过程。<br></p>
+
+<h2>中介模式</h2>
+
+<p>1:接口对象之间的交互关系，将多对多关系通过中介类转换为一对多。<br>
+2:中介模式和观察者模式的区别在于，观察者关系是单向固定的，中介则可以是双向的。<br>
+3:中介模式接收消息后进行业务编排调度。<br>
+4:副作用：可能会产生一个大而全的上帝类，包含类所有的业务代码。（是否可以用命令模式进行拆分？）<br></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[领域驱动实践-从需求到代码]]></title>
