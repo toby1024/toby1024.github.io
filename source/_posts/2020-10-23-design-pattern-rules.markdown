@@ -3,7 +3,7 @@ layout: post
 title: "设计模式-面向对象编程"
 date: 2020-10-23 18:04:17 +0800
 comments: true
-categories: 设计模式 
+categories: DesignPatterns 
 keywords: 设计原则与思想 面向对象
 description: 面向对象：设计原则与思想
 ---
