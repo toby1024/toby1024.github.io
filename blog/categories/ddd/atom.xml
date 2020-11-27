@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ddd | Jason's drunk words]]></title>
   <link href="http://toby1024.github.io/blog/categories/ddd/atom.xml" rel="self"/>
   <link href="http://toby1024.github.io/"/>
-  <updated>2020-11-25T10:29:02+08:00</updated>
+  <updated>2020-11-27T09:43:44+08:00</updated>
   <id>http://toby1024.github.io/</id>
   <author>
     <name><![CDATA[jason3305@126.com]]></name>
@@ -35,9 +35,9 @@
 <h2>传统mvc模式</h2>
 
 <p>传统mvc往往基于数据模型进行开发，通过需求分析，确定数据模型，然后在数据模型上做CRUD开发<br>
-<img src="/images/ddd/20201105175028.jpg"><br>
+{% img /images/ddd/20201105175028.jpg %}<br>
 server类中聚集类所有的业务代码<br>
-<img src="/images/ddd/20201105175158.jpg"><br>
+{% img /images/ddd/20201105175158.jpg %}<br>
 所有的操作都是在操作数据，当业务变得越来越复杂时，service中的代码越来越臃肿，然后根据业务进行模块拆分，但是由于业务纵横交错，后续修改业务代码时，可能会需要修改多个模块。</p>
 
 <h2>微服务开发</h2>
@@ -56,7 +56,7 @@ server类中聚集类所有的业务代码<br>
 
 
 <p>针对不同的参与角色，我们定义不同的模型概念。
-<img src="/images/ddd/20201106085636.jpg"><br>
+{% img /images/ddd/20201106085636.jpg %}<br>
 通过对业务进行限界上下文划分，很容易就可以进行代码的隔离，不同的上下文分开进行编码，上下文之间的业务调用通过api接口方式进行交互，这样后续的业务演进，系统部署升级以及扩容都相对独立。<br>
 但是一个userstor就划分一个微服务肯定是不现实的，我们需要根据业务的相关性来进行，从两个方向来进行组织限界上下文。<br></p>
 
@@ -71,7 +71,7 @@ server类中聚集类所有的业务代码<br>
 <h3>DEMO</h3>
 
 <p>代码参考：<a href="https://github.com/toby1024/ddd-demo">ddd-demo</a>
-<img src="/images/ddd/20201106091014.jpg"><br></p>
+{% img /images/ddd/20201106091014.jpg %}<br></p>
 ]]></content>
   </entry>
   
@@ -114,7 +114,7 @@ server类中聚集类所有的业务代码<br>
 <h3>核心概念</h3>
 
 <p>事件风暴将系统拆分为不同的元素，用不同颜色的便利贴表示。<br>
-<img src="/images/ddd/event0.jpg"><br></p>
+{% img /images/ddd/event0.jpg %}<br></p>
 
 <h3>统一语言</h3>
 
@@ -122,7 +122,7 @@ server类中聚集类所有的业务代码<br>
 
 <h3>事件风暴过程</h3>
 
-<p><img src="/images/ddd/event_flow.jpg"><br></p>
+<p>{% img /images/ddd/event_flow.jpg %}<br></p>
 
 <h4>识别领域事件</h4>
 
@@ -135,7 +135,7 @@ server类中聚集类所有的业务代码<br>
 <h4>识别参与者</h4>
 
 <p>事件一共有四种参与者：
-<img src="/images/ddd/event.jpg"><br></p>
+{% img /images/ddd/event.jpg %}<br></p>
 
 <pre><code>- 角色：触发事件的人
 - 策略：触发事件的规则
@@ -164,10 +164,10 @@ server类中聚集类所有的业务代码<br>
 <ul>
 <li><p>单一抽象层次原则
 每个限界上下文从概念上应该尽量处于统一抽象层次，不能嵌套。
-<img src="/images/ddd/event3.jpg"><br></p></li>
+{% img /images/ddd/event3.jpg %}<br></p></li>
 <li><p>正交原则
 限界上下文之间不能互相影响，互相包含。
-<img src="/images/ddd/event4.jpg"><br></p></li>
+{% img /images/ddd/event4.jpg %}<br></p></li>
 </ul>
 
 
@@ -192,7 +192,7 @@ server类中聚集类所有的业务代码<br>
 <li>定义自己的读模型，通过防腐层进行转换，尽量不要迎合下游</li>
 <li>使用ID值对象（用于建立关联）（基本类型偏执）</li>
 <li>读模型和写模型就是领域模型对象
-<img src="/images/ddd/event5.jpg"><br></li>
+{% img /images/ddd/event5.jpg %}<br></li>
 </ul>
 </blockquote>
 
@@ -210,7 +210,7 @@ server类中聚集类所有的业务代码<br>
 
 <h4>角色构造型</h4>
 
-<p><img src="/images/ddd/event6.jpg"><br>
+<p>{% img /images/ddd/event6.jpg %}<br>
 DomainService来协调单个领域模型/值对象无法完成的业务功能，主要是数据持久化，外部接口调用获取数据等<br>
 AppService则负责业务编排<br>
 Factory负责封装复杂的创建逻辑，用于创建领域对象</p>

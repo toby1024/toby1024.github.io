@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://toby1024.github.io/blog/2020/11/26/designpatterns2/</loc>
+<lastmod>2020-11-26T14:47:26+08:00</lastmod>
+</url>
+<url>
 <loc>http://toby1024.github.io/blog/2020/11/09/designpatterns1/</loc>
 <lastmod>2020-11-09T11:04:08+08:00</lastmod>
 </url>
